@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 import { withBase } from "@/lib/basePath";
 import type { Artwork } from "@/lib/content";
@@ -58,7 +58,8 @@ export default function Gallery({ artworks }: { artworks: Artwork[] }) {
         onClick={(event) => {
           if (event.target === dialogRef.current) dialogRef.current?.close();
         }}
-        className="m-auto w-fit max-w-[94vw] max-h-[94vh] overflow-y-auto rounded-2xl bg-white p-0 text-stone-800 shadow-2xl backdrop:bg-stone-900/40 backdrop:backdrop-blur-sm"
+        className="m-auto max-h-[94vh] overflow-y-auto rounded-2xl bg-white p-0 text-stone-800 shadow-2xl backdrop:bg-stone-900/40 backdrop:backdrop-blur-sm [--pad:1rem] sm:[--pad:2rem] w-[calc(min(94vw_-_2*var(--pad),65vh*var(--ratio,1))_+_2*var(--pad))]"
+        style={{ "--ratio": selected ? selected.width / selected.height : 1 } as CSSProperties}
       >
         {selected && (
           <div className="relative flex flex-col gap-5 p-4 sm:p-8">
@@ -76,9 +77,11 @@ export default function Gallery({ artworks }: { artworks: Artwork[] }) {
               width={selected.width}
               height={selected.height}
               sizes="(min-width: 1024px) 960px, 94vw"
-              className="block h-auto max-h-[65vh] w-auto max-w-[calc(94vw-2rem)] object-contain sm:max-w-[calc(94vw-4rem)]"
+              loading="eager"
+              decoding="async"
+              className="block h-auto w-full [aspect-ratio:var(--ratio)]"
             />
-            <div className="w-0 min-w-full">
+            <div>
               <h2 id="art-modal-title" className="text-2xl font-semibold text-stone-900">
                 {selected.title}
               </h2>
