@@ -10,7 +10,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Angelika Erne | Painter",
+  title: "Angelika Erne | Artist",
   description: "Portfolio of Angelika Erne, a Zurich-based mixed media artist. Browse selected work.",
 };
 
