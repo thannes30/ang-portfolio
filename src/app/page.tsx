@@ -22,6 +22,16 @@ export default function Home() {
             className="mt-8 space-y-4 text-lg leading-relaxed text-stone-700 [&_a]:font-medium [&_a]:text-stone-900 [&_a]:underline [&_a]:underline-offset-4"
             dangerouslySetInnerHTML={{ __html: bio.html }}
           />
+          <p className="mt-4 text-lg">
+            <a
+              href={withBase("/Angelika-Erne-Resume.pdf")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-stone-900 underline underline-offset-4 hover:text-stone-600"
+            >
+              View Resume
+            </a>
+          </p>
         </div>
         <div className="hidden md:block">
           <Image
